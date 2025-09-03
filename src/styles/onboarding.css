@@ -1,0 +1,203 @@
+/* Smooth animations for tour elements */
+.__floater__arrow {
+  transition: all 0.3s ease;
+}
+
+.__floater__body {
+  animation: tooltipFadeIn 0.4s ease-out;
+  transition: all 0.3s ease;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Enhanced beacon animations */
+[data-tour-elem="beacon"] {
+  animation: beaconPulse 2s infinite;
+}
+
+@keyframes beaconPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 hsl(var(--primary) / 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px hsl(var(--primary) / 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 hsl(var(--primary) / 0);
+  }
+}
+
+/* Dark mode support for tooltips */
+.dark .__floater__body {
+  background-color: hsl(var(--card)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  color: hsl(var(--card-foreground)) !important;
+}
+
+.dark .__floater__arrow {
+  border-color: hsl(var(--card)) !important;
+}
+
+/* Dark mode button styling */
+.dark [data-action="primary"] {
+  background-color: hsl(var(--primary)) !important;
+  border-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+.dark [data-action="back"] {
+  background-color: transparent !important;
+  border: 1px solid hsl(var(--border)) !important;
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+.dark [data-action="skip"] {
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+.dark [data-action="close"] {
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+/* Enhanced spotlight with better visual hierarchy */
+[data-tour-elem="spotlight"] {
+  animation: spotlightFadeIn 0.5s ease-out;
+}
+
+@keyframes spotlightFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Custom overlay with subtle effect */
+[data-tour-elem="overlay"] {
+  background: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(2px);
+}
+
+/* Better button hover effects */
+[data-action="primary"]:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg) !important;
+}
+
+[data-action="back"]:hover {
+  transform: translateY(-1px);
+  background-color: hsl(var(--accent)) !important;
+}
+
+.dark [data-action="back"]:hover {
+  background-color: hsl(var(--accent)) !important;
+}
+
+/* Progress indicator styling */
+[data-tour-elem="progress"] {
+  background: hsl(var(--primary)) !important;
+  border-radius: 6px !important;
+  height: 4px !important;
+}
+
+/* Custom step counter styling */
+.__floater__body::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid hsl(var(--card));
+  z-index: 1;
+}
+
+.dark .__floater__body::before {
+  border-bottom-color: hsl(var(--card)) !important;
+}
+
+/* Enhanced content styling */
+.__floater__body h3 {
+  color: hsl(var(--card-foreground)) !important;
+  margin-bottom: 8px !important;
+}
+
+.dark .__floater__body h3 {
+  color: hsl(var(--card-foreground)) !important;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .__floater__body {
+    max-width: 320px !important;
+    margin: 0 16px !important;
+  }
+  
+  [data-tour-elem="tooltip"] {
+    font-size: 14px !important;
+  }
+  
+  [data-action="primary"],
+  [data-action="back"] {
+    padding: 10px 16px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* Accessibility improvements */
+[data-tour-elem="beacon"]:focus {
+  outline: 3px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+[data-action]:focus {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .__floater__body {
+    border: 2px solid hsl(var(--foreground)) !important;
+  }
+  
+  [data-action="primary"] {
+    background-color: hsl(var(--foreground)) !important;
+    border: 2px solid hsl(var(--foreground)) !important;
+    color: hsl(var(--background)) !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .__floater__body,
+  [data-tour-elem="beacon"],
+  [data-tour-elem="spotlight"] {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  [data-action="primary"]:hover,
+  [data-action="back"]:hover {
+    transform: none !important;
+  }
+}
+
+
+
+
