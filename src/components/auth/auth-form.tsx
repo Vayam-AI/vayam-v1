@@ -21,7 +21,7 @@ import {
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import GoogleSignInButton from "./GoogleSignInButton";
-import MicrosoftSignInButton from "./MicrosoftSignInButton";
+
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 interface EmailFormData {
@@ -288,7 +288,6 @@ export default function AuthForm() {
               {/* OAuth Buttons */}
               <div className="space-y-3">
                 <GoogleSignInButton />
-                <MicrosoftSignInButton />
               </div>
 
               {/* Divider and Tabs for sign-in method */}
